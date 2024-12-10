@@ -4,7 +4,11 @@ import 'react-quill/dist/quill.snow.css';
 const TextEditor = () => {
     const [value, setValue] = useState('');
   return (
- <ReactQuill theme="snow" value={value} onChange={setValue} />
+
+    <div className="container">
+    <ReactQuill theme="snow" value={value} onChange={setValue} />
+
+ </div>
   )
 }
 
