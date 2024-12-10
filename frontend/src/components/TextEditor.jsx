@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
+import {io} from 'socket.io-client'
 
 const TOOLBAR_OPTIONS = {
     toolbar:[
@@ -23,6 +23,14 @@ const TOOLBAR_OPTIONS = {
 
 const TextEditor = () => {
     const [value, setValue] = useState('');
+    useEffect(()=>{
+      const socket = io('http://localhost:3000');
+     
+      socket.on('connect', () => { // Add this line
+        console.log('Connected to server');
+      });
+      return () => socket.disconnect();
+    },[]);
   return (
 
     <div className="container">
